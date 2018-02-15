@@ -3,7 +3,7 @@ from bs4 import BeautifulSoup
 quote_page = 'https://news.google.com/news/headlines/section/topic/BUSINESS.en_in/Business?ned=in&hl=en-IN&gl=IN'
 page = urllib.request.urlopen(quote_page)
 soup = BeautifulSoup(page,'html.parser')
-name_box = soup.find('a',attrs={'role': 'heading'})
+name_box = soup.findAll('a',attrs={'role': 'heading'})
 for name in name_box:
 	name1 = name.text.strip()
         print(name1)
