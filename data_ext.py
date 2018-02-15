@@ -5,7 +5,7 @@ This scrappes data from google and appends it to a list: news_links and news_tit
 import urllib.request
 from bs4 import BeautifulSoup
 news_titles = []
-links=[]
+news_links=[]
 quote_page = 'https://news.google.com/news/headlines/section/topic/BUSINESS.en_in/Business?ned=in&hl=en-IN&gl=IN'
 page = urllib.request.urlopen(quote_page)
 soup = BeautifulSoup(page,'html.parser')
