@@ -23,6 +23,23 @@ for data in all_data:
     else:
         news_body.append(" ")    
 
+# Format apostrophe in strings
+for idx, text in enumerate(news_titles):
+    dummy = list(i for i, ch in enumerate(text) if ch == "'")
+    count = 0
+    for ele in dummy:
+        news_titles[idx] = news_titles[idx][0:ele + count] + "'" + news_titles[idx][ele + count:]
+for idx, text in enumerate(news_body):
+    dummy = list(i for i, ch in enumerate(text) if ch == "'")
+    count = 0
+    for ele in dummy:
+        news_body[idx] = news_body[idx][0:ele + count] + "'" + news_body[idx][ele + count:]
+for idx, text in enumerate(news_links):
+    dummy = list(i for i, ch in enumerate(text) if ch == "'")
+    count = 0
+    for ele in dummy:
+        news_links[idx] = news_links[idx][0:ele + count] + "'" + news_links[idx][ele + count:]
+
 ###############################################################################
 ###############################################################################
 ###############################################################################
