@@ -29,17 +29,20 @@ for idx, text in enumerate(news_titles):
     count = 0
     for ele in dummy:
         news_titles[idx] = news_titles[idx][0:ele + count] + "'" + news_titles[idx][ele + count:]
+        count += 1
 for idx, text in enumerate(news_body):
     dummy = list(i for i, ch in enumerate(text) if ch == "'")
     count = 0
     for ele in dummy:
         news_body[idx] = news_body[idx][0:ele + count] + "'" + news_body[idx][ele + count:]
+        count += 1
 for idx, text in enumerate(news_links):
     dummy = list(i for i, ch in enumerate(text) if ch == "'")
     count = 0
     for ele in dummy:
         news_links[idx] = news_links[idx][0:ele + count] + "'" + news_links[idx][ele + count:]
-
+        count += 1
+        
 ###############################################################################
 ###############################################################################
 ###############################################################################
@@ -76,10 +79,11 @@ SET time_zone = "+00:00";
 -- Table structure for table `TestTable`
 --
 
-CREATE TABLE `TestTable` (
-  `header` varchar(50) COLLATE utf8_unicode_ci NOT NULL,
-  `text` varchar(50) COLLATE utf8_unicode_ci NOT NULL,
-  `url` varchar(50) COLLATE utf8_unicode_ci NOT NULL,
+DROP TABLE IF EXISTS `TestTable`; 
+CREATE TABLE IF NOT EXISTS `TestTable` (
+  `header` varchar(100) COLLATE utf8_unicode_ci NOT NULL,
+  `text` varchar(500) COLLATE utf8_unicode_ci NOT NULL,
+  `url` varchar(150) COLLATE utf8_unicode_ci NOT NULL,
   `imgsrc` varchar(50) COLLATE utf8_unicode_ci NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
@@ -91,9 +95,9 @@ INSERT INTO `TestTable` (`header`, `text`, `url`, `imgsrc`) VALUES
 """
 sql_string = ''
 for idx, val in enumerate(news_titles):
-    dummy_string = "('" + val + "','" + news_body[idx] + "','" + news_links[idx] + "','" + "xyz')\n"
+    dummy_string = "('" + val + "','" + news_body[idx] + "','" + news_links[idx] + "','" + "xyz'),\n"
     sql_string+= dummy_string
-string2 = sql_string
+string2 = sql_string[:-2] + ';'
 
 string3 = """
 --
