@@ -28,10 +28,11 @@ SET time_zone = "+00:00";
 -- Table structure for table `TestTable`
 --
 
-CREATE TABLE `TestTable` (
-  `header` varchar(50) COLLATE utf8_unicode_ci NOT NULL,
-  `text` varchar(50) COLLATE utf8_unicode_ci NOT NULL,
-  `url` varchar(50) COLLATE utf8_unicode_ci NOT NULL,
+DROP TABLE IF EXISTS `TestTable`; 
+CREATE TABLE IF NOT EXISTS `TestTable` (
+  `header` varchar(100) COLLATE utf8_unicode_ci NOT NULL,
+  `text` varchar(500) COLLATE utf8_unicode_ci NOT NULL,
+  `url` varchar(150) COLLATE utf8_unicode_ci NOT NULL,
   `imgsrc` varchar(50) COLLATE utf8_unicode_ci NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
@@ -40,47 +41,26 @@ CREATE TABLE `TestTable` (
 --
 
 INSERT INTO `TestTable` (`header`, `text`, `url`, `imgsrc`) VALUES
-('PNB Fraud: Banks for raising cover against fraud by staff','PNB Scam: Mehul Choksi Claims Innocence With Open Letter','https://www.businesstoday.in/current/economy-politics/pnb-fraud-banks-for-raising-cover-against-fraud-by-staff/story/271440.html','xyz')
-('E-way bill to be implemented from April 1, no decision on GST return simplification','E-way bill for inter-state movement of goods to be implemented from April 1, says Sushil Kumar Modi','https://www.businesstoday.in/current/economy-politics/gst-eway-bill-goods-and-service-tax-april-1-/story/271408.html','xyz')
-('State Bank of India set for UK restructuring','','http://www.moneycontrol.com/news/business/state-bank-of-india-set-for-uk-restructuring-2515763.html','xyz')
-('OBC fraud: Delhi-based jeweller fled in 2014, CBI waited for six months to file an FIR: report','CBI Files Case Against Delhi Diamond Exporter For Rs. 389-Crore Loan Fraud','https://www.businesstoday.in/current/economy-politics/obc-fraud-oriental-bank-of-commerce-cbi-fir-dwarka-das-jeweller/story/271432.html','xyz')
-('Hindustan Zinc to add 3 mn tonne capacity with 2 new mills costing Rs 6 bn','','http://www.business-standard.com/article/companies/hindustan-zinc-to-add-3-mn-tonne-capacity-with-2-new-mills-costing-rs-6-bn-118022500136_1.html','xyz')
-('Weekly Wrap: Elon Musk gives Uber CEO a reality check; Amazon Retail pilots in Pune','Dara Khosrowshahi on why PM Modi is his favourite entrepreneur | ET GBS 2018','https://www.vccircle.com/weekly-wrap-elon-musk-gives-uber-ceo-a-reality-check-amazon-retail-pilots-in-pune/','xyz')
-('Bhushan Power bid: Liberty House plans to move NCLT this week','','http://www.moneycontrol.com/news/business/bhushan-power-bid-liberty-house-plans-to-move-nclt-this-week-2515777.html','xyz')
-('Architect Hafeez Contractor Offers To Design 19 Railway Stations For Free','','https://www.ndtv.com/india-news/architect-hafeez-contractor-offers-to-design-19-railway-stations-for-free-1816958','xyz')
-('Friendly play between banks, Rotomac, says debt tribunal','Rotomac Scam: Vikram Kothari was invited to Investors Summit 2018 too','https://timesofindia.indiatimes.com/business/friendly-play-between-banks-rotomac-says-debt-tribunal/articleshow/63061867.cms','xyz')
-('IGI stalemate ends, after SC order IndiGo says will shift flights','','https://economictimes.indiatimes.com/industry/transportation/airlines-/-aviation/igi-stalemate-ends-after-sc-order-indigo-says-will-shift-flights/articleshow/63054487.cms','xyz')
-('Hindcon Chemicals' Rs 7.73 crore IPO opens Monday','','https://economictimes.indiatimes.com/markets/stocks/news/hindcon-chemicals-rs-7-73-crore-ipo-opens-monday/articleshow/63067002.cms','xyz')
-('Grasim Industries gets green nod for Rs1,800 crore expansion project','','http://www.livemint.com/Companies/vTtIXcRfl8pizRM0F7TDKL/Grasim-Industries-gets-green-nod-for-Rs1800-crore-expansion.html','xyz')
-('Who will buy Essar Steel?','','http://www.fortuneindia.com/macro/who-will-buy-essar-steel/101619','xyz')
-('213 railway projects report cost overrun of Rs 1.73 lk cr','','https://www.indiatoday.in/pti-feed/story/213-railway-projects-report-cost-overrun-of-rs-1.73-lk-cr-1177140-2018-02-25','xyz')
-('Eight of top 10 cos add Rs 58650 crore in m-cap','','https://economictimes.indiatimes.com/markets/stocks/news/eight-of-top-10-cos-add-rs-58650-crore-in-m-cap/articleshow/63065026.cms','xyz')
-('With $116 billion cash, Warren Buffett says Berkshire needs 'huge' deals','','http://www.moneycontrol.com/news/business/with-116-billion-cash-warren-buffett-says-berkshire-needs-huge-deals-2515771.html','xyz')
-('Porsche to launch electric vehicle in India in early 2020','','http://www.moneycontrol.com/news/technology/auto/porsche-to-launch-electric-vehicle-in-india-in-early-2020-2515751.html','xyz')
-('Saudi oil minister hopes Opec, allies can ease output curbs in 2019','','https://economictimes.indiatimes.com/markets/commodities/news/saudi-oil-minister-hopes-opec-allies-can-ease-output-curbs-in-2019/articleshow/63065621.cms','xyz')
-('EVs: Essel arm to invest Rs. 4250 crore','','http://www.thehindu.com/todays-paper/tp-miscellaneous/tp-others/evs-essel-arm-to-invest-rs-4250-crore/article22848124.ece','xyz')
-('Libya Oil Field Halt Slows Exports, Sending Crude Prices Rising','','https://www.bloomberg.com/news/articles/2018-02-25/libya-oil-field-halt-slows-exports-sending-crude-prices-rising','xyz')
-('PNB Fraud: Banks for raising cover against fraud by staff','PNB Scam: Mehul Choksi Claims Innocence With Open Letter','https://www.businesstoday.in/current/economy-politics/pnb-fraud-banks-for-raising-cover-against-fraud-by-staff/story/271440.html','xyz')
-('E-way bill to be implemented from April 1, no decision on GST return simplification','E-way bill for inter-state movement of goods to be implemented from April 1, says Sushil Kumar Modi','https://www.businesstoday.in/current/economy-politics/gst-eway-bill-goods-and-service-tax-april-1-/story/271408.html','xyz')
-('State Bank of India set for UK restructuring',' ','http://www.moneycontrol.com/news/business/state-bank-of-india-set-for-uk-restructuring-2515763.html','xyz')
-('OBC fraud: Delhi-based jeweller fled in 2014, CBI waited for six months to file an FIR: report','CBI Files Case Against Delhi Diamond Exporter For Rs. 389-Crore Loan Fraud','https://www.businesstoday.in/current/economy-politics/obc-fraud-oriental-bank-of-commerce-cbi-fir-dwarka-das-jeweller/story/271432.html','xyz')
-('Hindustan Zinc to add 3 mn tonne capacity with 2 new mills costing Rs 6 bn',' ','http://www.business-standard.com/article/companies/hindustan-zinc-to-add-3-mn-tonne-capacity-with-2-new-mills-costing-rs-6-bn-118022500136_1.html','xyz')
-('Weekly Wrap: Elon Musk gives Uber CEO a reality check; Amazon Retail pilots in Pune','Dara Khosrowshahi on why PM Modi is his favourite entrepreneur | ET GBS 2018','https://www.vccircle.com/weekly-wrap-elon-musk-gives-uber-ceo-a-reality-check-amazon-retail-pilots-in-pune/','xyz')
-('Bhushan Power bid: Liberty House plans to move NCLT this week',' ','http://www.moneycontrol.com/news/business/bhushan-power-bid-liberty-house-plans-to-move-nclt-this-week-2515777.html','xyz')
-('Architect Hafeez Contractor Offers To Design 19 Railway Stations For Free',' ','https://www.ndtv.com/india-news/architect-hafeez-contractor-offers-to-design-19-railway-stations-for-free-1816958','xyz')
-('Friendly play between banks, Rotomac, says debt tribunal','Rotomac Scam: Vikram Kothari was invited to Investors Summit 2018 too','https://timesofindia.indiatimes.com/business/friendly-play-between-banks-rotomac-says-debt-tribunal/articleshow/63061867.cms','xyz')
-('IGI stalemate ends, after SC order IndiGo says will shift flights',' ','https://economictimes.indiatimes.com/industry/transportation/airlines-/-aviation/igi-stalemate-ends-after-sc-order-indigo-says-will-shift-flights/articleshow/63054487.cms','xyz')
-('Hindcon Chemicals' Rs 7.73 crore IPO opens Monday',' ','https://economictimes.indiatimes.com/markets/stocks/news/hindcon-chemicals-rs-7-73-crore-ipo-opens-monday/articleshow/63067002.cms','xyz')
-('Grasim Industries gets green nod for Rs1,800 crore expansion project',' ','http://www.livemint.com/Companies/vTtIXcRfl8pizRM0F7TDKL/Grasim-Industries-gets-green-nod-for-Rs1800-crore-expansion.html','xyz')
-('Who will buy Essar Steel?',' ','http://www.fortuneindia.com/macro/who-will-buy-essar-steel/101619','xyz')
-('213 railway projects report cost overrun of Rs 1.73 lk cr',' ','https://www.indiatoday.in/pti-feed/story/213-railway-projects-report-cost-overrun-of-rs-1.73-lk-cr-1177140-2018-02-25','xyz')
-('Eight of top 10 cos add Rs 58650 crore in m-cap',' ','https://economictimes.indiatimes.com/markets/stocks/news/eight-of-top-10-cos-add-rs-58650-crore-in-m-cap/articleshow/63065026.cms','xyz')
-('With $116 billion cash, Warren Buffett says Berkshire needs 'huge' deals',' ','http://www.moneycontrol.com/news/business/with-116-billion-cash-warren-buffett-says-berkshire-needs-huge-deals-2515771.html','xyz')
-('Porsche to launch electric vehicle in India in early 2020',' ','http://www.moneycontrol.com/news/technology/auto/porsche-to-launch-electric-vehicle-in-india-in-early-2020-2515751.html','xyz')
-('Saudi oil minister hopes Opec, allies can ease output curbs in 2019',' ','https://economictimes.indiatimes.com/markets/commodities/news/saudi-oil-minister-hopes-opec-allies-can-ease-output-curbs-in-2019/articleshow/63065621.cms','xyz')
-('EVs: Essel arm to invest Rs. 4250 crore',' ','http://www.thehindu.com/todays-paper/tp-miscellaneous/tp-others/evs-essel-arm-to-invest-rs-4250-crore/article22848124.ece','xyz')
-('Libya Oil Field Halt Slows Exports, Sending Crude Prices Rising',' ','https://www.bloomberg.com/news/articles/2018-02-25/libya-oil-field-halt-slows-exports-sending-crude-prices-rising','xyz')
-
+('PNB exposure to alleged fraud swells to well over $2 billion','PNB fraud case: RBI stops Letters of Undertaking as instrument of credit','http://www.livemint.com/Industry/6xAyEYGbEr0RdPu9Jgt8gM/PNB-discloses-Rs942-crore-additional-exposure-in-Nirav-Modi.html','xyz'),
+('State Bank Of India Closes 41.16 Lakh Savings Accounts','SBI slashes charges for non-maintenance of minimum balance','https://www.ndtv.com/business/state-bank-of-india-sbi-closes-41-16-lakh-savings-accounts-for-not-maintaining-minimum-balance-1823473','xyz'),
+('IndiGo, GoAir ground 65 flights, solution to engine issue not likely before June','IndiGo, GoAir Cancel 65 Flights After Planes Are Grounded, Passengers Stuck','https://www.hindustantimes.com/india-news/indigo-goair-ground-65-flights-solution-to-engine-issue-not-likely-before-june/story-Rf88hYYG7hMb5s51Cvy7HI.html','xyz'),
+('Tata Sons sells TCS shares worth Rs9,000 crore to pare debt',' ','http://www.livemint.com/Companies/fiZ2hVLmWqLMKEsLFbZBFP/Tata-Sons-sells-TCS-shares-worth-Rs9000-crore-to-pare-debt.html','xyz'),
+('South states show better net connectivity & higher download speeds: Report',' ','http://www.business-standard.com/article/economy-policy/chennai-bengaluru-lead-in-internet-speed-mumbai-lags-118031301149_1.html','xyz'),
+('SC extends deadline for linking Aadhaar to phones, bank accounts','Jan Man: SC indefinitely extends mandatory Aadhaar linking deadline','http://www.business-standard.com/article/economy-policy/sc-extends-deadline-for-linking-aadhaar-to-phones-bank-accounts-118031301088_1.html','xyz'),
+('Blocking of Broadcom-Qualcomm tie-up highlights 5G security fears','Foreign direct investment is good for America: Rep. Barr','http://www.newindianexpress.com/world/2018/mar/13/blocking-of-broadcom-qualcomm-tie-up-highlights-5g-security-fears-1786582.html','xyz'),
+('Maruti Suzuki Swift likely to get a six-speed gearbox: Report',' ','http://www.livemint.com/Industry/4CBAjbViP36JzExjGQLvQK/Maruti-Suzuki-Swift-likely-to-get-a-sixspeed-gearbox-Repor.html','xyz'),
+('BSNL, Air India, MTNL worst performing PSUs in FY 17',' ','https://www.indiatoday.in/pti-feed/story/bsnl-air-india-mtnl-worst-performing-psus-in-fy-17-1188534-2018-03-13','xyz'),
+('Bharat Dynamics IPO covered one-third on first day on institutional demand',' ','https://www.vccircle.com/bharat-dynamics-ipo-covered-one-third-on-first-day-on-institutional-demand/','xyz'),
+('Market Wrap: Sensex closes lower, Nifty ends flat, TCS shares fall 5%',' ','http://www.livemint.com/Money/kayUR91911YT2tjpllChHN/Market-Live-Sensex-Nifty-trade-marginally-higher-telecom.html','xyz'),
+('Railways unable to renew, replace ''over-aged assets'' due to poor financial health: CAG',' ','https://timesofindia.indiatimes.com/india/railways-unable-to-renew-replace-over-aged-assets-due-to-poor-financial-health-cag/articleshow/63289583.cms','xyz'),
+('Government asks banks to ''name and shame'' wilful defaulters',' ','https://economictimes.indiatimes.com/news/economy/policy/government-asks-banks-to-name-and-shame-wilful-defaulters/articleshow/63288098.cms','xyz'),
+('Govt puts Chidamabaram''s 80:20 gold scheme under lens',' ','https://timesofindia.indiatimes.com/india/govt-puts-chidamabarams-8020-gold-scheme-under-lens/articleshow/63277936.cms','xyz'),
+('Telecom sector after 3QFY2018: Consolidation, data boom to play important roles',' ','http://www.moneycontrol.com/news/business/moneycontrol-research/telecom-sector-after-3qfy2018-consolidation-data-boom-to-play-important-roles-2527151.html','xyz'),
+('Government slashes Bt Cotton seed price to Rs 740 per packet',' ','https://economictimes.indiatimes.com/news/economy/agriculture/government-slash-bt-cotton-seed-price-to-rs-740-per-packet/articleshow/63280750.cms','xyz'),
+('10 lakh Aircel customers port to Vodafone',' ','http://www.business-standard.com/article/pti-stories/10-lakh-aircel-customers-port-to-vodafone-118031301067_1.html','xyz'),
+('Indian economy looks up: 8 reasons that will cheer up Narendra Modi, Arun Jaitley',' ','http://www.financialexpress.com/economy/eight-economic-reasons-that-will-cheer-up-modi-and-jaitley/1096742/','xyz'),
+('HAL launches Rs4,230-crore public offer, issue opens on 16 March',' ','http://www.livemint.com/Money/S3nLG43iIB3jrvCP9Ddv8I/HAL-launches-Rs4230crore-public-offer-issue-opens-on-16-M.html','xyz'),
+('Vedanta appoints UK Sinha as independent director',' ','https://www.indiatoday.in/pti-feed/story/vedanta-appoints-uk-sinha-as-independent-director-1188337-2018-03-13','xyz');
 --
 -- Indexes for dumped tables
 --
