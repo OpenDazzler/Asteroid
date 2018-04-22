@@ -1,0 +1,136 @@
+###############################################################################
+###############################################################################
+###############################################################################
+"""
+This scrappes data from google and appends it to a list: news_links and news_titles
+"""
+
+import urllib.request
+from bs4 import BeautifulSoup
+news_titles = []
+news_body = []
+news_links=[]
+news_img_path = [] #MWG8ab, src
+quote_page = 'https://news.google.com/news/headlines/section/topic/BUSINESS.en_in/Business?ned=in&hl=en-IN&gl=IN'
+page = urllib.request.urlopen(quote_page)
+soup = BeautifulSoup(page,'html.parser')
+all_data = soup.findAll('div',attrs={'jsname': 'UNxEwf'})
+for idx,data in enumerate(all_data):
+    # News Links/source
+    news_links.append((data.findAll('a',attrs={'role': 'heading'}))[0].get('href'))
+    # News Header
+    news_titles.append((data.findAll('a',attrs={'role': 'heading'}))[0].text.strip())
+    # News Body (if exists)
+    if not(not(data.findAll('span',attrs={'jsname': 'zljxwd'}))):
+        news_body.append((data.findAll('span',attrs={'jsname': 'zljxwd'}))[0].text.strip())
+    else:
+        news_body.append(" ")    
+    # News Images
+    img_object = data.findAll('img')
+    if not img_object: # if empty
+        news_img_path.append(" ")
+    else:
+        news_img_path.append(img_object[0]['src'])
+        img = urllib.request.urlretrieve(img_object[0]['src'],"myimg_" +str(idx) + ".jpg")
+    
+
+# Format apostrophe in strings
+for idx, text in enumerate(news_titles):
+    dummy = list(i for i, ch in enumerate(text) if ch == "'")
+    count = 0
+    for ele in dummy:
+        news_titles[idx] = news_titles[idx][0:ele + count] + "'" + news_titles[idx][ele + count:]
+        count += 1
+for idx, text in enumerate(news_body):
+    dummy = list(i for i, ch in enumerate(text) if ch == "'")
+    count = 0
+    for ele in dummy:
+        news_body[idx] = news_body[idx][0:ele + count] + "'" + news_body[idx][ele + count:]
+        count += 1
+for idx, text in enumerate(news_links):
+    dummy = list(i for i, ch in enumerate(text) if ch == "'")
+    count = 0
+    for ele in dummy:
+        news_links[idx] = news_links[idx][0:ele + count] + "'" + news_links[idx][ele + count:]
+        count += 1
+        
+###############################################################################
+###############################################################################
+###############################################################################
+"""
+This writes data to a sql file
+"""
+string1 = """-- phpMyAdmin SQL Dump
+-- version 4.7.7
+-- https://www.phpmyadmin.net/
+--
+-- Host: localhost:3306
+-- Generation Time: Feb 18, 2018 at 03:04 PM
+-- Server version: 10.1.31-MariaDB
+-- PHP Version: 7.0.26
+
+SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
+SET AUTOCOMMIT = 0;
+START TRANSACTION;
+SET time_zone = "+00:00";
+
+
+/*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
+/*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
+/*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
+/*!40101 SET NAMES utf8mb4 */;
+
+--
+-- Database: `id4781287_buzz1`
+--
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `TestTable`
+--
+
+DROP TABLE IF EXISTS `TestTable`; 
+CREATE TABLE IF NOT EXISTS `TestTable` (
+  `header` varchar(100) COLLATE utf8_unicode_ci NOT NULL,
+  `text` varchar(500) COLLATE utf8_unicode_ci NOT NULL,
+  `url` varchar(150) COLLATE utf8_unicode_ci NOT NULL,
+  `imgsrc` varchar(150) COLLATE utf8_unicode_ci NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+--
+-- Dumping data for table `TestTable`
+--
+
+INSERT INTO `TestTable` (`header`, `text`, `url`, `imgsrc`) VALUES
+"""
+sql_string = ''
+for idx, val in enumerate(news_titles):
+#    dummy_string = "('" + val + "','" + news_body[idx] + "','" + news_links[idx] + "','" + "xyz'),\n"
+    dummy_string = "('" + val + "','" + news_body[idx] + "','" + news_links[idx] + "','" + news_img_path[idx] + "'),\n"
+    sql_string+= dummy_string
+string2 = sql_string[:-2] + ';'
+
+string3 = """
+--
+-- Indexes for dumped tables
+--
+
+--
+-- Indexes for table `TestTable`
+--
+ALTER TABLE `TestTable`
+  ADD PRIMARY KEY (`header`);
+COMMIT;
+
+/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
+/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
+/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
+"""
+
+fp = open('sample.sql','w')
+
+fp.writelines(string1 + string2 + string3)
+
+fp.close()
+
