@@ -4,6 +4,7 @@
 """
 This scrappes data from google and appends it to a list: news_links and news_titles
 test to check git flow workflow
+test to check git flow workflow test 2
 """
 
 import urllib.request
